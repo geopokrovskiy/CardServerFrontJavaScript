@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .popup-fade {
+            display: none;
+        }
+        .popup-fade:before {
+            content: '';
+            background: #000;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.7;
+            z-index: 9999;
+        }
+        .popup {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            padding: 20px;
+            width: 360px;
+            margin-left: -200px;
+            background: #fff;
+            border: 1px solid orange;
+            border-radius: 4px;
+            z-index: 99999;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="container"  style="margin: auto"  >
+    <form>
+        <form>
+            <div class="form-group">
+                <h1>Registration</h1>
+            </div>
+            <div class="form-group">
+                <label for="email">Enter your new login</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Login">
+            </div>
+            <div class="form-group">
+                <label for="password">Enter your password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <button type="button" class="btn btn-primary" id="btn-sign-up">Sign Up</button>
+            <button type="button" class="btn btn-warning" id="btn-go-login">Go to Login</button>
+        </form>
+    </form>
+</div>
+
+
+<div class="popup-fade">
+    <div class="popup">
+        <p>User has been successfully signed up! </p>
+        <button class="btn btn-success" id="btn-ok">Ok</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="scripts/registration.js"></script>
+</body>
+</html>

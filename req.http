@@ -1,0 +1,61 @@
+###
+POST http://localhost:8080/CardServer/registration
+content-type:application/json
+
+{
+  "login" : "sanek",
+  "password" : "123"
+}
+
+
+###
+POST http://localhost:8080/CardServer/user?login=georgy&password=qwerty
+
+###
+GET http://localhost:8080/CardServer/user
+
+###
+GET http://localhost:8080/CardServer/user?id=1
+
+###
+POST http://localhost:8080/CardServer/category?name=finances&user_id=4
+
+###
+GET http://localhost:8080/CardServer/category?user_id=1
+
+###
+GET http://localhost:8080/CardServer/category?id=1
+
+###
+DELETE http://localhost:8080/CardServer/category?id=4
+
+###
+PUT http://localhost:8080/CardServer/category
+content-type:application/json
+
+{
+  "id" : 12,
+  "name" : "растения"
+}
+
+###
+PUT http://localhost:8080/CardServer/category?id=12&name=Plants
+
+###
+POST http://localhost:8080/CardServer/card?category_id=1&question=Q&answer=A
+
+
+###
+GET http://localhost:8080/CardServer/card?user_id=1
+
+###
+GET http://localhost:8080/CardServer/card?category_id=3
+
+###
+DELETE http://localhost:8080/CardServer/card?id=3
+
+###
+PUT http://localhost:8080/CardServer/card?id=11&question=q1&answer=a1
+
+
+

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card</title>
+    <script src="scripts/jQuery.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/paging.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+
+    <link href="styles/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .row {
+            margin-left:-5px;
+            margin-right:-5px;
+        }
+
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 200%;
+            border: 2px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h3 style="margin-left: 5px">
+
+</h3>
+
+<div class = "row">
+    <div class = "column">
+        <table class="table table-bordered table-hover horizontal-align" id="category_table">
+            <thead class="table-dark">
+            <tr>
+                <th>Category Id</th>
+                <th>Category name</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody id="category_table_content">
+            </tbody>
+        </table>
+        <div id="paginationCategories" style="text-align: center;"></div>
+    </div>
+    <div class = "column">
+        <table class="table table-bordered table-hover horizontal-align">
+            <thead class="table-dark">
+            <tr>
+                <th>Cards Id</th>
+                <th>Card question</th>
+                <th>Card answer</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody id="card_table_content">
+            </tbody>
+        </table>
+        <div id="paginationCards" style="text-align: center;"></div>
+    </div>
+</div>
+
+
+<!-- Button trigger modal add-->
+<div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddCategory"
+    style="margin-left: 5px">
+        Add new category
+    </button>
+    <button type="button" class="btn btn-outline-primary" id = "btn_log_out">
+        Log out
+    </button>
+</div>
+
+<!-- Modal Add New Category-->
+<div class="modal fade" id="modalAddCategory" tabindex="-1" aria-labelledby="addNewCategoryModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNewCategoryModalLabel">Add new Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="add_category_name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="add_category_name" aria-describedby="Category Name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="add_category_button">Add</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Change Category-->
+<div class="modal fade" id="modalChangeCategory" tabindex="-1" aria-labelledby="changeCategoryModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changeCategoryModalLabel">Change Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="number" id="change_category_id" hidden>
+                    <div class="mb-3">
+                        <label for="change_category_name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="change_category_name" aria-describedby="Category Name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="change_category_button">Change</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Add New Card-->
+<div class="modal fade" id="modalAddCard" tabindex="-1" aria-labelledby="addNewCardModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNewCardModalLabel">Add new Card</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="add_card_question" class="form-label">Question</label>
+                        <input type="text" class="form-control" id="add_card_question" aria-describedby="Question">
+                    </div>
+                    <div class="mb-3">
+                        <label for="add_card_answer" class="form-label">Answer</label>
+                        <input type="text" class="form-control" id="add_card_answer" aria-describedby="Answer">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="add_card_button">Add</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Change Card-->
+<div class="modal fade" id="modalChangeCard" tabindex="-1" aria-labelledby="changeCardModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changeCardModalLabel">Change Card</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="number" id="change_card_id" hidden>
+                    <div class="mb-3">
+                        <label for="change_card_question" class="form-label">Question</label>
+                        <input type="text" class="form-control" id="change_card_question" aria-describedby="Question">
+                    </div>
+                    <div class="mb-3">
+                        <label for="change_card_answer" class="form-label">Answer</label>
+                        <input type="text" class="form-control" id="change_card_answer" aria-describedby="Answer">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="change_card_button">Change</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>
